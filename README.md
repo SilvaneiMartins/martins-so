@@ -12,7 +12,7 @@
 
 ## Informação do Projeto
 
-Sistema Operacional desenvolvido em Assembly, interesse no projeto é aprender sobre a linguagem e estou realizando um sonho de infancia que é conhecer o processo de como criar minha propria distribuição para notebooks.
+Sistema Operacional desenvolvido em Assembly, interesse no projeto é aprender sobre a linguagem e estou realizando um sonho de infância que é conhecer o processo de como criar minha própria distribuição para notebooks.
 
 ## Executar o Projeto
 
@@ -24,7 +24,20 @@ Sistema Operacional desenvolvido em Assembly, interesse no projeto é aprender s
     cd martins so
 
     # Executar o sistema operacional:
-    $
+
+    # 1 passo:
+    # Execute o comando no terminal para compilar
+    $ nasm -f bin boot.asm -o boot.bin
+
+    # 2 passo:
+    # Executar o Fergo rawImage para criar o arquivo
+
+    # 3 passo:
+    # Criar um pendrive bootavel com Rufus e gerar imagem
+
+    # 4 passo:
+    # Executar em um ambiente virtual:
+    # Virtual Box ou MVWare Virtual
 ```
 
 ## Licença
