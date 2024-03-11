@@ -17,10 +17,21 @@ OSMain:
     call VGA.SetVideoMode
     call DrawBackground
     call EffectInit
+    call GraficInterface
     jmp END
 
 ; --------------------------------------------------------
 ; Funções do Kernel
+GraficInterface:
+    mov byte[Sector], 3
+    mov byte[Drive], 80h
+    mov byte[NumSectors], 1
+    mov word[SegmentAddr], 0800h
+    mov word[OffsetAddr], 0500h
+    call ReadDisk
+    call WindowAddress
+ret
+
 ConfigSegment:
     mov ax, es
     mov ds, ax
