@@ -12,7 +12,9 @@
 NameSystem db "MartinsOS", 0
 
 ; --------------------------------------------------------
-; Configurações de janela
+; Monitor e configurações de janela
+Count           dw 0000h
+
 BackWidth       dw 0000h
 BackHeight      dw 0000h
 BackColor       db 46
@@ -20,8 +22,6 @@ Pagination      db 0
 CursorX         db 15
 CursorY         db 12
 State           db 0
-Key             db 0
-count           dw 0
 
 ; --------------------------------------------------------
 ; Biblioteca de rotinas
@@ -62,7 +62,6 @@ ret
 PrintString:
     mov ah, 09h
     mov bh, [Pagination]
-    mov bl, 0111_1001b
     mov cx, 1
     mov al, [si]
     print:
@@ -83,7 +82,60 @@ MoveCursor:
 ret
 
 EffectInit:
+    mov bl, 44
+    start:
+        mov dh, [CursorY]
+        mov dl, [CursorX]
+        call MoveCursor
+        mov si, NameSystem
+        call PrintString
+        pusha
+        mov bl, [State]
+        cmp bl, 0
+        je Increment
+        jmp Decrement
+    Increment:
+        popa
+        inc bl
+        call Waiting
+        cmp bl, 50
+        jne start
+        pusha
+        mov bl, 1
+        mov byte[State], si
+        popa
+        jmp start
+    Decrement:
+        popa
+        dec bl
+        call Waiting
+        cmp bl, 44
+        jne start
+        pusha
+        mov bl, 0
+        mov byte[State], bl
+        mov bx, [Count]
+        inc bx
+        mov WORD[Count], bx
+        cmp bx, 5000 ;  Mudar para 50 => Colocar para executar na Maquina Virtual
+        jne ReturnLoop
+        jmp ReturnProg
+    ReturnLoop:
+        popa
+        jmp start
+    ReturnProg:
+        popa
+        ret
+ret
 
+Waiting:
+    pusha
+    mov bx, 0
+    time:
+        inc bx
+        cmp bx, 50000 ; Mudar para 500 => Colocar para executar na Maquina Virtual
+        jne time
+    popa
 ret
 
 %ENDIF

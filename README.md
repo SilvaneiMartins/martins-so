@@ -12,7 +12,14 @@
 
 ## Informação do Projeto
 
+Ola! Vamos continuar com o nosso estudo de com o nosso [Desenvolvendo Sistemas Operacionais Simples] e iremos dar continuidade na das rotina de implementação do MartinsOS.
+
 Sistema Operacional desenvolvido em Assembly, interesse no projeto é aprender sobre a linguagem e estou realizando um sonho de infância que é conhecer o processo de como criar minha própria distribuição para notebooks.
+
+<p align="center">
+    <a href="https://imgur.com/vtG3Etb"><img src="https://i.imgur.com/vtG3Etb.png" title="source: imgur.com" /></a>
+    <br />
+</p>
 
 ## Executar o Projeto
 
@@ -24,20 +31,20 @@ Sistema Operacional desenvolvido em Assembly, interesse no projeto é aprender s
     cd martins so
 
     # Executar o sistema operacional:
-
-    # 1 passo:
-    # Execute o comando no terminal para compilar
-    $ nasm -f bin boot.asm -o boot.bin
+    # Executar para assembler.bat para criar os binários nas pasta Binary
+    $ Assembler.bat
 
     # 2 passo:
-    # Executar o Fergo rawImage para criar o arquivo
+    # Executar o FergoRaw para criar a imagem do Sistema Operacional
+    $ Executar o programa FergoRaw
 
     # 3 passo:
     # Criar um pendrive bootavel com Rufus e gerar imagem
+    $ Criar um pendrive bootavel
 
     # 4 passo:
     # Executar em um ambiente virtual:
-    # Virtual Box ou MVWare Virtual
+    $ Virtual Box ou MVWare Virtual
 ```
 
 ## Licença
