@@ -5,7 +5,9 @@ jmp OSMain
 
 ; --------------------------------------------------------
 ; Diretivas e Inclusões
+%INCLUDE "Hardware/wmemory.lib"
 %INCLUDE "Hardware/monintor.lib"
+%INCLUDE "Hardware/disk.lib"
 
 ; --------------------------------------------------------
 ; Iniciando o sistema

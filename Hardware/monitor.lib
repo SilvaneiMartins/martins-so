@@ -14,7 +14,6 @@ NameSystem db "MartinsOS", 0
 ; --------------------------------------------------------
 ; Monitor e configurações de janela
 Count           dw 0000h
-
 BackWidth       dw 0000h
 BackHeight      dw 0000h
 BackColor       db 46
@@ -82,7 +81,7 @@ MoveCursor:
 ret
 
 EffectInit:
-    mov bl, 44
+    mov bl, 44 ; Cor é 44
     start:
         mov dh, [CursorY]
         mov dl, [CursorX]
@@ -98,7 +97,7 @@ EffectInit:
         popa
         inc bl
         call Waiting
-        cmp bl, 50
+        cmp bl, 50 ; Cor é 50
         jne start
         pusha
         mov bl, 1
@@ -130,12 +129,10 @@ ret
 
 Waiting:
     pusha
-    mov bx, 0
-    time:
-        inc bx
-        cmp bx, 50000 ; Mudar para 500 => Colocar para executar na Maquina Virtual
-        jne time
-    popa
+    mov ah, 86h
+    mov cs, 0002h
+    mov dx, 49F0h
+    int 15h
 ret
 
 %ENDIF

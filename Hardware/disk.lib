@@ -1,0 +1,52 @@
+; --------------------------------------------------------
+; MartinsOS - Disk Library Rotines
+; Created By Silvanei Martins
+; Version 1.0.0
+; --------------------------------------------------------
+
+%IFNDEF __DISK_LIB__
+%DEFINE __DISK_LIB__
+
+; --------------------------------------------------------
+; Configuração de disco e memoria
+
+WindowAddress       dw 0x500
+
+SegmentAddr         dw 0000h
+OffsetAddr          dw 0000h
+Sector              db 0
+Trach               db 0
+Head                db 0
+Drive               db 0
+NumSectors          db 0
+
+Reader              db 02h
+Writer              db 03h
+
+SectirPerTrack      db 0
+TrackPerHead        db 0
+
+; --------------------------------------------------------
+; Routina da biblioteca
+
+ReadDisk:
+    mov ah, byte[Reader]
+    call DiskOperation
+
+WriteDisk:
+    mov ah, byte[Writer]
+    call DiskOperation
+
+DiskOperation:
+    mov al, byte[NumSectors]
+    mov ch, byte[Trach]
+    mov cl, byte[Sector]
+    mov dh, byte[Head]
+    mov dl, byte[Drive]
+    mov bx, word[SegmentAddr]
+    mov es, bx
+    mov bx, word[OffsetAddr]
+    int 13h
+ret
+
+%ENDIF
