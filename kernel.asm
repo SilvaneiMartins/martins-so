@@ -23,12 +23,13 @@ OSMain:
 ; --------------------------------------------------------
 ; Funções do Kernel
 GraficInterface:
-    mov byte[Window_Bar], 0
+    mov byte[Window_Bar], 1
     mov byte[Window_PositionX], 5
     mov byte[Window_PositionY], 5
     mov byte[Window_Height], 100
     mov byte[Window_Width], 150
     mov byte[Window_Border_Color], 55
+    mov byte[Window_Bar_Color], 16
     mov byte[Sector], 3
     mov byte[Drive], 80h
     mov byte[NumSectors], 1
@@ -36,6 +37,7 @@ GraficInterface:
     mov word[OffsetAddr], 0500h
     call ReadDisk
     call WindowAddress
+    mov byte[Window_Bar], 0
     mov byte[Window_PositionX], 110
     mov byte[Window_PositionY], 5
     mov byte[Window_Height], 50
