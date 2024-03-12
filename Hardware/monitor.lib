@@ -81,7 +81,7 @@ MoveCursor:
 ret
 
 EffectInit:
-    mov bl, 44 ; Cor é 44
+    mov bl, 44
     start:
         mov dh, [CursorY]
         mov dl, [CursorX]
@@ -97,7 +97,7 @@ EffectInit:
         popa
         inc bl
         call Waiting
-        cmp bl, 50 ; Cor é 50
+        cmp bl, 50
         jne start
         pusha
         mov bl, 1
@@ -116,7 +116,7 @@ EffectInit:
         mov bx, [Count]
         inc bx
         mov WORD[Count], bx
-        cmp bx, 5000 ;  Mudar para 50 => Colocar para executar na Maquina Virtual
+        cmp bx, 10
         jne ReturnLoop
         jmp ReturnProg
     ReturnLoop:
@@ -133,6 +133,7 @@ Waiting:
     mov cs, 0002h
     mov dx, 49F0h
     int 15h
+    popa
 ret
 
 %ENDIF
