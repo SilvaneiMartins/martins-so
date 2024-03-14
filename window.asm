@@ -35,6 +35,7 @@ WindowNoBar:
         dec dx
         cmp dx, bx
         jne LineLeft
+        call BackColor
         jmp Rets
 
 WindowWithBar:
@@ -65,7 +66,7 @@ WindowWithBar:
             dec dx
             cmp dx, bx
             jne LineLeftBar
-            ; call BackColor
+            call BackColor
             ; call ButtonsBar
             jmp Rets
     BackColumn:
@@ -98,6 +99,43 @@ BorderRightDown:
         dec dx
         cmp dx, bx
         jne LineDown
+ret
+
+BackColor:
+    mov al, byte[Window_Back_Color]
+    mov cx, word[Window_PositionX]
+    mov dx, word[Window_PositionY]
+    cmp byte[Window_Bar], 1
+    je WithBar
+    jmp NoBar
+WithBar:
+    add dx, 9
+    mov word[BackInitialPositionY], dx
+    add wor[BackInitialPositionY], 1
+    jmp Salt
+NoBar:
+    inc dx
+    mov word[BackInitialPositionY], dx
+Salt:
+    inc cx
+    mov word[BackInitialPositionX], cx
+Initial:
+    mov cx, word[BackInitialPositionX]
+    mov bx, word[WIndow_Width]
+    add bx, cx
+    sub bx, 1
+Columns:
+    int 10h
+    inc cx
+    cmp cx, bx
+    jne Columns
+    mov bx, word[Window_Height]
+    add bx, word[BackInitialPositionY]
+    sub bx, 1
+Rons:
+    inc dx,
+    cmp dx, bx
+    jne Initial
 ret
 
 Rets:

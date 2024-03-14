@@ -28,8 +28,9 @@ GraficInterface:
     mov byte[Window_PositionY], 5
     mov byte[Window_Height], 100
     mov byte[Window_Width], 150
-    mov byte[Window_Border_Color], 55
+    mov byte[Window_Border_Color], 21
     mov byte[Window_Bar_Color], 16
+    mov byte[Window_Back_Color], 55
     mov byte[Sector], 3
     mov byte[Drive], 80h
     mov byte[NumSectors], 1
@@ -42,6 +43,8 @@ GraficInterface:
     mov byte[Window_PositionY], 5
     mov byte[Window_Height], 50
     mov byte[Window_Width], 50
+    mov byte[Window_Border_Color], 30
+    mov byte[Window_Back_Color], 60
     call WindowAddress
 ret
 
